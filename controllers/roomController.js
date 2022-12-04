@@ -28,6 +28,7 @@ export const getRooms = async (req,res) =>{
 export const getOneRoom = async (req, res) => {
     console.log(req.params.id);
     const room = await RoomModel.find({ _id:req.params.id })
+    res.send(room)
 }
 
 // Update one room
@@ -39,7 +40,7 @@ export const updateRoom = async (req,res) => {
 
 // Delete room
 
-export const deleteRoom = async (rq, res) => {
+export const deleteRoom = async (req, res) => {
     const room = await RoomModel.findByIdAndDelete(req.params.id)
     if (!room) {
         res.status(404).send('Aucune chambre trouvée.')
