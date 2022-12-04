@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addRoom, getTest, postTest } from "../controllers/roomController.js";
+import { addRoom, deleteRoom, getOneRoom, getRooms, getTest, postTest, updateRoom } from "../controllers/roomController.js";
 import { catchErrors } from "../config/helpers.js";
 
 const router = Router();
@@ -9,9 +9,13 @@ router.get('/', (_,res) => {
 })
 
 router.get('/test', catchErrors(getTest));
+router.post('/test', catchErrors(postTest));
 
-router.post('/test', catchErrors(postTest))
 
-router.post('/room', catchErrors(addRoom))
+router.post('/room', catchErrors(addRoom));
+router.get('/rooms', catchErrors(getRooms));
+router.get('/room/:id', catchErrors(getOneRoom));
+router.patch('/room/:id', catchErrors(updateRoom));
+router.delete('/room/:id', catchErrors(deleteRoom))
 
 export default router;
